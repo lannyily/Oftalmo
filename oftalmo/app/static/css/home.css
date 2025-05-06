@@ -345,6 +345,12 @@ header {
     font-size: 14px;
 }
 
+@media (max-width: 768px) {
+    .cards{
+        grid-template-columns: 1fr;
+    }
+}
+
 .faq-section {
     max-width: 800px;
     margin: auto;
@@ -623,21 +629,26 @@ header {
 
 
 @media (max-width: 768px) {
-    .equipe-header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 20px;
-    }
-
+    
     .cards-equipe {
         flex-direction: column;
         align-items: center;
     }
 
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
+    .footer-columns h3{
+        font-size: 16px;
+    }
+
+    .footer-columns p, li {
+        font-size: 14px;
+    }
+
+    .footer-columns {
+        gap: 20px;
+    }
+
+    .footer-bottom p{
+        font-size: 12px;
     }
 
     .footer-bottom-content {
@@ -655,8 +666,31 @@ header {
         padding: 30px;
     }
 
+    .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, 
+            rgba(0, 153, 170, 0.8) 0%, 
+            rgba(0, 153, 170, 0.3) 40%, 
+            rgba(0, 153, 170, 0.3) 60%, 
+            rgba(0, 153, 170, 0.8) 100%);
+        z-index: 1; 
+        pointer-events: none;
+    }
+    
+    
+
     .hero-content {
         max-width: 100%;
+        margin: auto 0;
+    }
+
+    .hero-buttons {
+        justify-content: center;
     }
     
     .navbar {
