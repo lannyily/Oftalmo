@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -19,7 +21,7 @@
   <title>Detalhes</title>
 
   <!-- LINK DO CSS -->
-  <link rel="stylesheet" href="../static/css/perfilProcedimento.css">
+  <link rel="stylesheet" href="{% static 'css/perfilProcedimento.css' %}">
   
 </head>
 <body>
@@ -27,9 +29,9 @@
     <header class="header">
       <div class="logo">Oftalmo+</div>
       <nav class="navbar">
-          <a href="home.html">Home</a>
-          <a href="procedimentos.html">Serviços</a>
-          <a href="medicos.html">Médicos</a>
+          <a href="{% url 'home' %}">Home</a>
+          <a href="{% url 'procedimentos' %}">Serviços</a>
+          <a href="{% url 'medicos' %}">Médicos</a>
           <button class="btn-entrar">Entrar</button>
       </nav>
     </header>

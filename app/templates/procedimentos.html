@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -18,16 +20,17 @@
   <link rel="website icon" type="png" href="../static/images/icon.png">
 
    <!-- LINK DO CSS -->
-  <link rel="stylesheet" href="../static/css/procedimentos.css" />
+   <link rel="stylesheet" href="{% static 'css/procedimentos.css' %}">
+
   
 </head>
 <body>
     <header class="header">
         <div class="logo">Oftalmo+</div>
         <nav class="navbar">
-            <a href="home.html">Home</a>
-            <a href="procedimentos.html">Serviços</a>
-            <a href="medicos.html">Médicos</a>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'procedimentos' %}">Serviços</a>
+            <a href="{% url 'medicos' %}">Médicos</a>
             <button class="btn-entrar">Entrar</button>
         </nav>
     </header>

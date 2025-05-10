@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -14,67 +16,65 @@
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
-  <title>Perfil Médico</title>
-
+  <title>Médicos</title>
+  
   <link rel="website icon" type="png" href="../static/images/icon.png">
 
   <!-- LINK DO CSS -->
-  <link rel="stylesheet" href="../static/css/perfilMedico.css">
+  <link rel="stylesheet" href="{% static 'css/medicos.css' %}">
   
 </head>
 <body>
   <header class="header">
     <div class="logo">Oftalmo+</div>
     <nav class="navbar">
-        <a href="home.html">Home</a>
-        <a href="procedimentos.html">Serviços</a>
-        <a href="medicos.html">Médicos</a>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'procedimentos' %}">Serviços</a>
+        <a href="{% url 'medicos' %}">Médicos</a>
         <button class="btn-entrar">Entrar</button>
     </nav>
   </header>
 
   <main >
-    <section class="medico">
-        <div class="topo-titulo-botaoAgendar">
-        <h2>Dr. João Pedro Alves</h2>
-        <button class="btn-agendar" onclick="enviarSolicitacao()">Enviar Solicitação de Agendamento</button>
-      </div>
-      <hr>
-    </div>
-    
-
-    <div class="detalhes-medico">
-      <img src="../static/images/image 8.png" alt="Cirurgia de Catarata">
-      <ul class="detalhes">
-        <li>
-
-            <div class="textos">
-                <p><strong>CMR:</strong> XXXXXXXXXXXXXX</p>
-              </div>
-        </li>
-        <li>
-          <div class="textos">
-            <strong>Especialista em retina e Vítreo</strong>
-            <p>Dr. João Pedro Alves é médico oftalmologista com especialização em Retina e Vítreo. Graduado em Medicina pela Universidade Federal, concluiu residência médica em Oftalmologia e posteriormente se especializou em doenças da retina e vítreo, com ênfase em procedimentos cirúrgicos e tratamentos clínicos avançados. Atua há mais de 10 anos na área, sendo referência no tratamento de condições como retinopatia diabética, degeneração macular relacionada à idade (DMRI) e descolamento de retina.</p>
-          </div>
-        </li>
-          <li>
-            <div class="textos">
-                <strong><i class="bi bi-calendar"></i>Atendimentos:</strong>
-                <p>Terça e quarta das 8h ás 17h</p>
-            </div>
-          </li>
+   
+   <section class="medicos">
+      
+      <h2>Médicos</h2>
         
-      </ul>
-    </div>
+      
+      <hr>
+      <div class="cards">
+
+        <div class="card" data-id="joao-pedro-alves">
+          <img src="../static/images/image 8.png" alt="Dr. João Pedro Alves">
+          <h3>Dr. João Pedro Alves</h3>
+          <p>Especialista em Retina e Vítreo</p>
+        </div>
+
     
+        <div class="card" data-id="camila-borges">
+          <img src="../static/images/image 9.png" alt="Dr. Camila Borges">
+          <h3>Dr. Camila Borges</h3>
+          <p>Especialista em refração e cirurgia refrativa</p>
+        </div>
+      
+     
+      
+        <div class="card" data-id="mariana-costa">
+          <img src="../static/images/image 10.png" alt="Dr. Mariana Costa">
+          <h3>Dr. Mariana Costa</h3>
+          <p>Especialista em oftalmopediatria e estrabismo</p>
+        </div>
 
-  </section class="diferencias">
+        <div class="card" data-id="ricardo-santana">
+          <img src="../static/images/image 13.png" alt="Dr. Ricardo Santana">
+          <h3>Dr. Ricardo Santana</h3>
+          <p>Especialista em oftalmologia</p>
+        </div>
 
-    <h3>Diferencias </h3>
-        <li>Referência no tratamento de condições como retinopatia diabética, degeneração macular relacionada à idade (DMRI) e descolamento de retina.</li>
-        <li>Participa ativamente de congressos nacionais e internacionais.</li>
-        <li>Valoriza o acompanhamento contínuo e o bem-estar do paciente, priorizando um atendimento claro, ético e personalizado.</li>
+      </div>
+
+    </section>
   </main>
  
 
@@ -130,6 +130,6 @@
         </div>
     </footer>
 
-  <script src="../static/js/perfilMedico.js"></script>
+  <script src="../static/js/medicos.js"></script>
 </body>
 </html>

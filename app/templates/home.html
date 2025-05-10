@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -17,7 +19,7 @@
     <link rel="website icon" type="png" href="../static/images/icon.png">
 
     <!-- LINK DO CSS -->
-    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 
     
 </head>
@@ -25,9 +27,9 @@
     <header class="header">
         <div class="logo">Oftalmo+</div>
         <nav class="navbar">
-            <a href="home.html">Home</a>
-            <a href="procedimentos.html">Serviços</a>
-            <a href="medicos.html">Médicos</a>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'procedimentos' %}">Serviços</a>
+            <a href="{% url 'medicos' %}">Médicos</a>
             <button class="btn-entrar">Entrar</button>
         </nav>
     </header>
@@ -37,7 +39,7 @@
             <h1>Veja o mundo com clareza, <br> viva cada detalhe com saúde!</h1>
             <p>Na Oftalmo+, cuidamos da sua saúde ocular com tecnologia de ponta, profissionais experientes e atendimento humanizado. Aqui, cada detalhe importa — desde a sua primeira consulta até o acompanhamento completo da sua visão.</p>
             <div class="hero-buttons">
-                <button class="btn-agendar" onclick="window.location.href='formulario.html'">Agendar Consulta</button>
+                <button class="btn-agendar" onclick="window.location.href='{% url 'formulario' %}'">Agendar Consulta</button>
                 <button class="btn-sobre">Quem Somos</button>
             </div>
         </div>
@@ -81,7 +83,7 @@
                         
                     </div>
                     
-                    <a href="procedimentos.html" class="btn-ver-mais">Ver mais</a>  
+                    <a href="{% url 'procedimentos' %}" class="btn-ver-mais">Ver mais</a>  
                 </div>
             
                 <hr>
@@ -193,7 +195,7 @@
                     <h4>Equipe</h4>
                     <h1>Conheça nossa equipe dedicada de Oftalmologia</h1>
                 </div>
-                <a href="medicos.html" class="btn-ver-mais">Ver mais</a>
+                <a href="{% url 'medicos' %}" class="btn-ver-mais">Ver mais</a>
                 
                 
             </div>
