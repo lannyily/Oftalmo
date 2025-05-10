@@ -1,165 +1,168 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #fbf9f9;
+}
+
+/* Cabeçalho */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   
-  body {
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-  }
-  
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: white; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-  
-    .cabecalho {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 50px;
-      border-bottom: 1px solid #ccc;
-      background-color: #fff;
-    }
-    
-    .cabecalho .logo {
-      font-size: 30px;
-      font-weight: bold;
-      color: #0099aa;
-    }
-    
-    .cabecalho nav a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #008ca8;
-  
-    }
-  
-    .btn-entrar {
-      padding: 8px 16px;
-      border: 1px solid #00a2c6;
-      background: none;
-      color: #00a2c6;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-    }
-  
-    .btn-entrar:hover {
-      background-color: #0099aa;
-      color: white;
-    }
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white; 
+  z-index: 999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+  color: #0099aa;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar a {
+  color: #0099aa;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.btn-entrar {
+  padding: 8px 16px;
+  border: 1px solid #0099aa;
+  background: transparent;
+  color: #0099aa;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-entrar:hover {
+  background-color: #0099aa;
+  color: white;
+}
  
-  main {
-    max-width: 1200px;
-    margin: auto;
-    padding: 2rem;
-    padding: 1px 2rem 2rem 2rem;
-    
-  }
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+  padding: 1px 2rem 2rem 2rem;
   
-  .cirurgia-catarata h2 {
-    display: flex;
-    margin-bottom: 2rem;
-    font-weight: normal;
-    font-size: 30px;
-  
-  }
+}
 
-  .topo-titulo-botaoAgendar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10rem;
-    
-  }
+.cirurgia-catarata h2 {
+  display: flex;
+  margin-bottom: 10px;
+  font-weight: normal;
+  font-size: 30px;
 
-  hr{
-    font-weight: normal;
-    border: none; 
-    border-top: 2px solid #0099aa;
-    margin-bottom: 10px;
-    padding: 20px;
-  }
-  
-  .linha3 {
-    margin: 20px auto;
-    width: 100%; 
-    border: px solid #008ca8
-   
-  }
-  
-  .btn-agendar {
-    background-color: #0099aa;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    margin-bottom: 1.5rem;
-    border-radius: 20px;
-    cursor: pointer;
-  }
+}
 
-  .btn-agendar:hover{
-    background-color: #007a8a;
-  }
+.topo-titulo-botaoAgendar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 7rem;
   
-  .info-cirurgia {
-    display: flex;
-    align-items: start;
-    gap: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .info-cirurgia img {
-    max-width: 400px;
-    border-radius: 10px;
-  }
-  
-  .detalhes {
-    list-style-type: none;
-    color: #008ca8;
-    padding: 0;
-  }
-    .detalhes li {
-      display: flex;
-      align-items: flex-start; 
-      margin-bottom: 20px;
-    }
-    
-    .detalhes i {
-      font-size: 15px;
-      color: #008ca8;
-      margin-right: 12px;
-      margin-top: 5px; 
-    }
-    
-    .detalhes .textos {
-      display: flex;
-      flex-direction: column; 
-    }
-    
-    .detalhes .textos strong {
-      font-size: 16px;
-      margin-bottom: 5px;
-    }
-    
-    .detalhes .textos p {
-      font-size: 14px;
-      color: #555; 
-      margin: 0; 
-    }
-  
-  .descricao {
-    margin-top: 1rem;
-    max-width: 800px;
-    text-align: justify;
-    color: #555;
-  }
+}
+
+hr{
+  font-weight: normal;
+  border: none; 
+  border-top: 2px solid #0099aa;
+  padding: 20px;
+}
+
+.btn-agendar {
+  background-color: #0099aa;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-agendar:hover{
+  background-color: #007a8a;
+}
+
+.info-cirurgia {
+  display: flex;
+  align-items: start;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.info-cirurgia img {
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.detalhes {
+  list-style-type: none;
+  color: #008ca8;
+  padding: 0;
+}
+.detalhes li {
+  display: flex;
+  align-items: flex-start; 
+  margin-bottom: 20px;
+}
+
+.detalhes i {
+  font-size: 15px;
+  color: #008ca8;
+  margin-right: 12px;
+  margin-top: 5px; 
+}
+
+.detalhes .textos {
+  display: flex;
+  flex-direction: column; 
+}
+
+.detalhes .textos strong {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.detalhes .textos p {
+  font-size: 14px;
+  color: #555; 
+  margin: 0; 
+}
+
+.descricao {
+  margin-top: 1rem;
+  max-width: 1800px;
+  text-align: justify;
+  color: #555;
+}
 
   /* Animação */
 @keyframes fadeUp {
@@ -170,58 +173,58 @@
 }
 
   
-  .medicos {
-    margin-top: 3rem;
-    padding: 60px ;
-    background-color: #f8f8f8;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    width: 100%;
+.medicos {
+  margin-top: 3rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  width: 100%;
 }
   
 
-  .medicos p{
-    color: #666;
-  }
-  
-  .medicos h2 {
-    margin-bottom: 2rem;
-    font-weight: normal;
-    font-size: 30px;
-  }
-  
-  .cards {
-    display: flex;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 100px;
-    max-width: 1000px;
-    margin: 0 auto; 
-    justify-content: center;
-   
-    
-  }
-  
-  .card {
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    padding: 1rem;
-    width: 250px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-  }
+.medicos p{
+  color: #666;
+}
 
-  .card:hover{
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
+.medicos h2 {
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.cards {
+  display: flex;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 100px;
+  max-width: 1000px;
+  margin: 0 auto; 
+  justify-content: center;
+  
+  
+}
+
+.card {
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 1rem;
+  width: 250px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f5f5f5;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.card:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
 
 /* Footer */
 .footer {
@@ -230,13 +233,13 @@
 }
 
 .footer-content {
-  gap: 30px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid #ccc;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  
+    padding: 0px 150px 50px 150px;
+}
+
+.container hr{
+  border: none; 
+  border-top: 2px solid #0099aa;
+  margin-bottom: 20px;
 }
 
 .footer-text{
@@ -263,9 +266,6 @@
 
 .footer-columns{
   display: flex;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
 }
 
 .footer-column h3 {
@@ -303,9 +303,6 @@
 .footer-bottom-content {
   margin-top: 50px;
   text-align: right;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
 }
 
 .social-icons a {
@@ -317,22 +314,37 @@
   height: 20px;
 }
 
-
-
-  
-  /* Responsividade da apresentação */
-@media (max-width: 900px) {
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        padding: 30px;
-    }
-
-    .hero-content {
-        max-width: 100%;
-    }
-    
-    .navbar {
-        gap: 10px;
-    }
+@media (max-width: 960px){
+  .footer-content {
+    padding: 0px 100px 30px 100px;
+  }
 }
+
+@media (max-width: 768px) {
+
+  .footer-columns h3{
+      font-size: 16px;
+  }
+
+  .footer-columns p, li {
+      font-size: 14px;
+  }
+
+  .footer-columns {
+      gap: 20px;
+  }
+
+  .footer-bottom p{
+      font-size: 12px;
+  }
+
+  .footer-bottom-content {
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  .footer-content {
+    padding: 0px 30px 20px 30px;
+  }
+}
+

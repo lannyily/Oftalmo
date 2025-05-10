@@ -345,7 +345,7 @@ header {
     font-size: 14px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 960px) {
     .cards{
         grid-template-columns: 1fr;
     }

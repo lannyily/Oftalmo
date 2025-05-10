@@ -22,36 +22,44 @@
   
 </head>
 <body>
-  <header class="cabecalho">
-    <div class="logo">Oftalmo+</div>
-    <nav>
-      <a href="home.html" id="home-link">Home</a>
-      <a href="#" id="serviços-link">Serviços</a>
-      <a href="medicos.html" id="medicos-link">Médicos</a>
-      <button class="btn-entrar">Entrar</button>
-    </nav>
-  </header>
+    <header class="header">
+        <div class="logo">Oftalmo+</div>
+        <nav class="navbar">
+            <a href="home.html">Home</a>
+            <a href="procedimentos.html">Serviços</a>
+            <a href="medicos.html">Médicos</a>
+            <button class="btn-entrar">Entrar</button>
+        </nav>
+    </header>
 
-  <main >
+  <main>
     <h1 class="titulo-principal">Procedimentos</h1>
     <hr>
 
     <div class="conteudo">
-      <section class="filtros">
-        <input type="text" id="search" placeholder="Pesquisar..." />
-        
-        <div class="checkboxes">
-          <label><input type="checkbox" name="procedimento"> Exames de Rotina</label>
-          <label><input type="checkbox" name="procedimento"> Exames Diagnósticos Avançados</label>
-          <label><input type="checkbox" name="procedimento"> Tratamentos e Procedimentos Ambulatoriais</label>
-          <label><input type="checkbox" name="procedimento"> Cirurgias Oftalmológicas</label>
-        </div>
+        <section class="filtros">
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Pesquisar..." />
+                <button class="search-button" type="submit" title="Pesquisar">
+                  <i class="bi bi-search"></i>
+                </button>
+                
+            </div>
+            
+            <div class="checkboxes">
+                <label><input type="checkbox" name="procedimento"> Exames de Rotina</label>
+                <label><input type="checkbox" name="procedimento"> Exames Diagnósticos Avançados</label>
+                <label><input type="checkbox" name="procedimento"> Tratamentos e Procedimentos Ambulatoriais</label>
+                <label><input type="checkbox" name="procedimento"> Cirurgias Oftalmológicas</label>
+            </div>
     
   
-        <select id="select-medico">
-          <option selected>Médico(a)</option>
-        </select>
-      </section>
+            <select id="select-medico">
+              <option selected>Médico(a)</option>
+            </select>
+
+            <button class="btn-filtrar">Filtrar</button>
+        </section>
 
     
       <section class="cards">
@@ -95,55 +103,54 @@
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-content">
-        <div class="footer-top">
-            <div class="footer-text">
-                <h2>Oftalmo+</h2>
-                <div class="social-icons">
-                    <a href="#"><i class="bi bi-instagram"></i></a>
-                    <a href="#"><i class="bi bi-facebook"></i></a>
-                    <a href="#"><i class="bi bi-twitter"></i></a>
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-top">
+                <div class="footer-text">
+                    <h2>Oftalmo+</h2>
+                    <div class="social-icons">
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                    </div>
                 </div>
+                <hr>
             </div>
-            <hr>
-        </div>
+            
+
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>Informações de contato</h3>
+                    <p><strong>Endereço:</strong> Rua Exemplo, 123 - Centro, Cidade/UF</p>
+                    <p><strong>Telefone:</strong> (xx) xxxx-xxxx</p>
+                    <p><strong>WhatsApp:</strong> (xx) xxxxx-xxxx</p>
+                    <p><strong>Email:</strong> contato@oftalmomais.com</p>
+                </div>
         
+                <div class="footer-column">
+                    <h3>Horário de atendimento</h3>
+                    <p>Segunda a Sexta 08h às 18h</p>
+                    <p>Sábados 08h às 12h</p>
+                </div>
+        
+                <div class="footer-column">
+                    <h3>Links úteis</h3>
+                    <ul>
+                        <li><a href="#">Quem Somos</a></li>
+                        <li><a href="#">Especialidades</a></li>
+                        <li><a href="#">Agendar Consulta</a></li>
+                        <li><a href="#">Convênios</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                
+            </div>
 
-        <div class="footer-columns">
-            <div class="footer-column">
-                <h3>Informações de contato</h3>
-                <p><strong>Endereço:</strong> Rua Exemplo, 123 - Centro, Cidade/UF</p>
-                <p><strong>Telefone:</strong> (xx) xxxx-xxxx</p>
-                <p><strong>WhatsApp:</strong> (xx) xxxxx-xxxx</p>
-                <p><strong>Email:</strong> contato@oftalmomais.com</p>
-            </div>
-    
-            <div class="footer-column">
-                <h3>Horário de atendimento</h3>
-                <p>Segunda a Sexta 08h às 18h</p>
-                <p>Sábados 08h às 12h</p>
-            </div>
-    
-            <div class="footer-column">
-                <h3>Links úteis</h3>
-                <ul>
-                    <li><a href="#">Quem Somos</a></li>
-                    <li><a href="#">Especialidades</a></li>
-                    <li><a href="#">Agendar Consulta</a></li>
-                    <li><a href="#">Convênios</a></li>
-                    <li><a href="#">Contato</a></li>
-                </ul>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-content">
+                <p>© 2025 Clínica Oftalmo+. Todos os direitos reservados.</p>
             </div>
         </div>
-
-    <div class="footer-bottom">
-        <div class="container footer-bottom-content">
-            <p>© 2025 Clínica Oftalmo+. Todos os direitos reservados.</p>
-        </div>
-    </div>
-</footer>
-
-  <script src="../static/js/procedimento.js"></script>
+    </footer>
 </body>
 </html>
