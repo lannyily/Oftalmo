@@ -1,4 +1,5 @@
 {% load static %}
+{% load data_tags %}
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -30,7 +31,7 @@
             <a href="{% url 'home' %}">Home</a>
             <a href="{% url 'procedimentos' %}">Serviços</a>
             <a href="{% url 'medicos' %}">Médicos</a>
-            <button class="btn-entrar">Entrar</button>
+            <a href="{% url 'admin:index' %}" class="btn-entrar">Entrar</a>
         </nav>
     </header>
 
@@ -90,44 +91,24 @@
             </div>
             
     
+            <!-- templates/home.html -->
             <div class="cards">
-                <div class="card">
-                    <img src="../static/images/image 4.png" alt="Cirurgia de Catarata">
+                {% if procedimentos_destaque %}
+                {% for procedimento in procedimentos_destaque %}
+                    <div class="card">
+                    <img src="{{ procedimento.foto.url }}" alt="{{ procedimento.nome }}">
                     <div class="card-text">
-                        <h4>Cirurgia de Catarata</h4>
-                        <p>Procedimento para remoção do cristalino opaco e substituição por lente intraocular.</p>
+                        <h4>{{ procedimento.nome }}</h4>
+                        <p>{{ procedimento.descricao|truncatechars:100 }}</p>
                         <a href="#">leia mais →</a>
                     </div>
-                </div>
-    
-                <div class="card">
-                    <img src="../static/images/image 5.png" alt="Mapeamento de Retina">
-                    <div class="card-text">
-                        <h4>Mapeamento de Retina</h4>
-                        <p>Exame detalhado que avalia a retina, essencial no diagnóstico de doenças oculares.</p>
-                        <a href="#">leia mais →</a>
                     </div>
-                    
+                {% endfor %}
+                {% else %}
+                <div class="alert">
+                    Nenhum procedimento em destaque configurado pelo administrador.
                 </div>
-    
-                <div class="card">
-                    <img src="../static/images/image 6.png" alt="Aplicação de Injeções Intravítreas">
-                    <div class="card-text">
-                        <h4>Aplicação de Injeções Intravítreas</h4>
-                        <p>Tratamento de doenças retinianas com medicamentos aplicados diretamente no olho.</p>
-                        <a href="#">leia mais →</a>
-                    </div>
-                </div>
-    
-                <div class="card">
-                    <img src="../static/images/image 7.png" alt="Cirurgia Refrativa (LASIK/PRK)">
-                    <div class="card-text">
-                        <h4>Cirurgia Refrativa (LASIK/PRK)</h4>
-                        <p>Procedimentos a laser para corrigir miopia, hipermetropia e astigmatismo.</p>
-                        <a href="#">leia mais →</a>
-                    </div>
-                    
-                </div>
+                {% endif %}
             </div>
         </div>
     </section>
@@ -203,22 +184,18 @@
             <hr>
     
             <div class="cards-equipe">
+                {% for medico in medicos_destaque %}
                 <div class="card-equipe">
-                    <img src="../static/images/image 8.png" alt="Dr. João Pedro Alves">
-                    <h3>Dr. João Pedro Alves</h3>
-                    <p>Especialista em Retina e Vítreo</p>
+                  <img src="{{ medico.foto.url }}" alt="{{ medico.nome }}">
+                  <h3>{{ medico.nome }}</h3>
+                  <p>{{ medico.especialidades }}</p>
                 </div>
-                <div class="card-equipe">
-                    <img src="../static/images/image 9.png" alt="Dra. Camila Borges">
-                    <h3>Dra. Camila Borges</h3>
-                    <p>Especialista em Cirurgia Refrativa e Córnea</p>
+                {% empty %}
+                <div class="alert">
+                  Nenhum médico em destaque configurado
                 </div>
-                <div class="card-equipe">
-                    <img src="../static/images/image 10.png" alt="Dra. Mariana Costa">
-                    <h3>Dra. Mariana Costa</h3>
-                    <p>Especialista em Oftalmopediatria e Estrabismo</p>
-                </div>
-            </div>
+                {% endfor %}
+              </div>
         </div>
     </section>
     

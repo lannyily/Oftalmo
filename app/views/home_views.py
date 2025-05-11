@@ -1,10 +1,23 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login
-from django.shortcuts import redirect
-from django.urls import reverse
-from django.core.exceptions import PermissionDenied
-from functools import wraps
+from django.shortcuts import render
+from ..models import MedicoDestaque, ProcedimentoDestaque
+
 
 def home_view(request):
-    return render(request, 'home.html')
-
+    # Médicos em destaque (máximo 3)
+    medicos_destaque = [
+        md.medico for md in 
+        MedicoDestaque.objects.select_related('medico').order_by('ordem')[:3]
+        if hasattr(md, 'medico')
+    ]
+    
+    # Procedimentos em destaque (máximo 4)
+    procedimentos_destaque = [
+        pd.procedimento for pd in 
+        ProcedimentoDestaque.objects.select_related('procedimento').order_by('ordem')[:4]
+        if hasattr(pd, 'procedimento')
+    ]
+    
+    return render(request, 'home.html', {
+        'medicos_destaque': medicos_destaque,
+        'procedimentos_destaque': procedimentos_destaque
+    })
