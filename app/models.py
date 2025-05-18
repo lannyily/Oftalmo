@@ -62,6 +62,7 @@ class Medico(ModelBase):
     atendimento = models.TextField(help_text="Ex: Segunda a Sexta, das 08h às 18h")
     diferenciais = models.TextField()
     formacao = models.TextField()
+    procedimentos = models.ManyToManyField('Procedimento', related_name='medicos')
 
     def __str__(self):
         return self.nome
