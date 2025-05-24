@@ -1,4 +1,5 @@
 {% load static %}
+{% load data_tags %}
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -40,68 +41,66 @@
     <hr>
 
     <div class="conteudo">
-        <section class="filtros">
-            <div class="search-container">
-                <input type="text" id="search" placeholder="Pesquisar..." />
-                <button class="search-button" type="submit" title="Pesquisar">
-                  <i class="bi bi-search"></i>
-                </button>
+        <form method="GET" action="{% url 'procedimentos' %}">
+            <section class="filtros">
+                <div class="search-container">
+                    <input type="text" id="search" name="q" value="{{ query }}" placeholder="Pesquisar..." />
+                    <button class="search-button" type="submit" title="Pesquisar">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+
+                <div class="checkboxes">
+                    <label><input type="checkbox" name="tipo" value="rotina"
+                        {% if 'rotina' in tipos_selecionados %}checked{% endif %}> Exames de Rotina</label>
+
+                    <label><input type="checkbox" name="tipo" value="avancado"
+                        {% if 'avancado' in tipos_selecionados %}checked{% endif %}> Exames Diagnósticos Avançados</label>
+
+                    <label><input type="checkbox" name="tipo" value="ambulatorial"
+                        {% if 'ambulatorial' in tipos_selecionados %}checked{% endif %}> Tratamentos e Procedimentos Ambulatoriais</label>
+
+                    <label><input type="checkbox" name="tipo" value="cirurgia"
+                        {% if 'cirurgia' in tipos_selecionados %}checked{% endif %}> Cirurgias Oftalmológicas</label>
+                </div>
                 
-            </div>
-            
-            <div class="checkboxes">
-                <label><input type="checkbox" name="procedimento"> Exames de Rotina</label>
-                <label><input type="checkbox" name="procedimento"> Exames Diagnósticos Avançados</label>
-                <label><input type="checkbox" name="procedimento"> Tratamentos e Procedimentos Ambulatoriais</label>
-                <label><input type="checkbox" name="procedimento"> Cirurgias Oftalmológicas</label>
-            </div>
     
-  
-            <select id="select-medico">
-              <option selected>Médico(a)</option>
-            </select>
+                <select id="select-medico">
+                    <option selected>Médico(a)</option>
+                </select>
 
-            <button class="btn-filtrar">Filtrar</button>
-        </section>
+                <button class="btn-filtrar" type="submit">Filtrar</button>
+            </section>
+        </form>
 
     
-      <section class="cards">
-                <div class="card">
-                    <img src="../static/images/image 4.png" alt="Cirurgia de Catarata">
-                    <div class="card-text">
-                        <h4>Cirurgia de Catarata</h4>
-                        <p>Procedimento para remoção do cristalino opaco e substituição por lente intraocular.</p>
-                        <a href="#">leia mais →</a>
-                    </div>
-                </div>
+        {% block content %}
+            {% if procedimentos %}
+                <div class="conteiner-flex" style="display: flex; flex-direction: column;">
+                    <!-- Mostra a contagem de resultados acima dos cards -->
+                    <p class="result-count" style="margin-bottom: 16px;">
+                        {{ total_resultados }} resultado{{ total_resultados|pluralize }} encontrado{{ total_resultados|pluralize }}
+                    </p>
 
-                <div class="card">
-                    <img src="../static/images/image 5.png" alt="Mapeamento de Retina">
-                    <div class="card-text">
-                        <h4>Mapeamento de Retina</h4>
-                        <p>Exame detalhado que avalia a retina, essencial no diagnóstico de doenças oculares.</p>
-                        <a href="#">leia mais →</a>
-                    </div>
+                    <!-- Listagem dos cards -->
+                    <section class="cards" style="display: flex; flex-wrap: wrap;">
+                        {% for procedimento in procedimentos %}
+                            <div class="card" style="min-width: 400px; min-height: 100px; text-align: left;">
+                                <img src="{{ procedimento.foto.url }}" alt="{{ procedimento.nome }}">
+                                <div class="card-text">
+                                    <h4>{{ procedimento.nome }}</h4>
+                                    <p>{{ procedimento.descricao|truncatechars:100 }}</p>
+                                    <a href="{% url 'perfilProcedimento' procedimento.nome %}">leia mais →</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </section>
                 </div>
+            {% else %}
+                <p class="content-wrapper min-height">Nenhum procedimento encontrado...</p>
+            {% endif %}
+        {% endblock %}
 
-                <div class="card">
-                    <img src="../static/images/image 6.png" alt="Aplicação de Injeções Intravítreas">
-                    <div class="card-text">
-                        <h4>Aplicação de Injeções Intravítreas</h4>
-                        <p>Tratamento de doenças retinianas com medicamentos aplicados diretamente no olho.</p>
-                        <a href="#">leia mais →</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="../static/images/image 7.png" alt="Cirurgia Refrativa (LASIK/PRK)">
-                    <div class="card-text">
-                        <h4>Cirurgia Refrativa (LASIK/PRK)</h4>
-                        <p>Procedimentos a laser para corrigir miopia, hipermetropia e astigmatismo.</p>
-                        <a href="#">leia mais →</a>
-                    </div>
-                </div>
-      </section>
 
     </div>
   </main>

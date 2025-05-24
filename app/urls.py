@@ -11,6 +11,6 @@ urlpatterns = [
     path('formulario/', formulario_view, name='formulario'),
     path('medicos/', medicos_view, name='medicos'),
     path('perfil-medico/', perfilMedico_views, name='perfil-medico'),
-    path('perfil-procedimento/', perfilProcedimento_views, name='perfil-procedimento'),
+    path('procedimento/<str:nome>/', perfilProcedimento_views, name='perfilProcedimento'),
     path('procedimentos/', procedimentos_views, name='procedimentos'),
 ]

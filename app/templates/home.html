@@ -100,7 +100,7 @@
                     <div class="card-text">
                         <h4>{{ procedimento.nome }}</h4>
                         <p>{{ procedimento.descricao|truncatechars:100 }}</p>
-                        <a href="#">leia mais →</a>
+                        <a href="{% url 'perfilProcedimento' procedimento.nome %}">leia mais →</a>
                     </div>
                     </div>
                 {% endfor %}
