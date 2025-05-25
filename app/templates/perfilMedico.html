@@ -38,7 +38,7 @@
   <main >
     <section class="medico">
         <div class="topo-titulo-botaoAgendar">
-        <h2>Dr. João Pedro Alves</h2>
+        <h2>Dr. {{ medico.nome }}</h2>
         <button class="btn-agendar" onclick="enviarSolicitacao()">Enviar Solicitação de Agendamento</button>
       </div>
       <hr>
@@ -46,24 +46,24 @@
     
 
     <div class="detalhes-medico">
-      <img src="../static/images/image 8.png" alt="Cirurgia de Catarata">
+      <img src="{{ medico.foto.url }}" alt="Foto de {{ medico.nome }}">
       <ul class="detalhes">
         <li>
 
             <div class="textos">
-                <p><strong>CMR:</strong> XXXXXXXXXXXXXX</p>
+                <p><strong>CMR:</strong> {{ medico.numero_cmr }}</p>
               </div>
         </li>
         <li>
           <div class="textos">
-            <strong>Especialista em retina e Vítreo</strong>
-            <p>Dr. João Pedro Alves é médico oftalmologista com especialização em Retina e Vítreo. Graduado em Medicina pela Universidade Federal, concluiu residência médica em Oftalmologia e posteriormente se especializou em doenças da retina e vítreo, com ênfase em procedimentos cirúrgicos e tratamentos clínicos avançados. Atua há mais de 10 anos na área, sendo referência no tratamento de condições como retinopatia diabética, degeneração macular relacionada à idade (DMRI) e descolamento de retina.</p>
+            <strong>{{ medico.especialidades }}</strong>
+            <p>{{ medico.formacao }}</p>
           </div>
         </li>
           <li>
             <div class="textos">
                 <strong><i class="bi bi-calendar"></i>Atendimentos:</strong>
-                <p>Terça e quarta das 8h ás 17h</p>
+                <p>{{ medico.atendimento }}</p>
             </div>
           </li>
         
@@ -74,9 +74,9 @@
   </section class="diferencias">
 
     <h3>Diferencias </h3>
-        <li>Referência no tratamento de condições como retinopatia diabética, degeneração macular relacionada à idade (DMRI) e descolamento de retina.</li>
-        <li>Participa ativamente de congressos nacionais e internacionais.</li>
-        <li>Valoriza o acompanhamento contínuo e o bem-estar do paciente, priorizando um atendimento claro, ético e personalizado.</li>
+    {% for linha in medico.diferenciais.splitlines %}
+      <li>{{ linha }}</li>
+    {% endfor %}
   </main>
  
 

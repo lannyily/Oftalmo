@@ -44,35 +44,17 @@
       
       <hr>
       <div class="cards">
+      {% for medico in medicos %}
+        <a href="{% url 'perfilMedico' medico.nome %}" class="card-link" style="text-decoration: none; color: inherit; display: block;   ">
+          <div class="card">
+            <img src="{{ medico.foto.url }}" alt="Foto de {{ medico.nome }}">
+            <h3>Dr. {{ medico.nome }}</h3>
+            <p>Especialista em {{ medico.especialidade }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
 
-        <div class="card" data-id="joao-pedro-alves">
-          <img src="../static/images/image 8.png" alt="Dr. João Pedro Alves">
-          <h3>Dr. João Pedro Alves</h3>
-          <p>Especialista em Retina e Vítreo</p>
-        </div>
-
-    
-        <div class="card" data-id="camila-borges">
-          <img src="../static/images/image 9.png" alt="Dr. Camila Borges">
-          <h3>Dr. Camila Borges</h3>
-          <p>Especialista em refração e cirurgia refrativa</p>
-        </div>
-      
-     
-      
-        <div class="card" data-id="mariana-costa">
-          <img src="../static/images/image 10.png" alt="Dr. Mariana Costa">
-          <h3>Dr. Mariana Costa</h3>
-          <p>Especialista em oftalmopediatria e estrabismo</p>
-        </div>
-
-        <div class="card" data-id="ricardo-santana">
-          <img src="../static/images/image 13.png" alt="Dr. Ricardo Santana">
-          <h3>Dr. Ricardo Santana</h3>
-          <p>Especialista em oftalmologia</p>
-        </div>
-
-      </div>
 
     </section>
   </main>

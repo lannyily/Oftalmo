@@ -38,51 +38,48 @@
 
   <main >
     <section class="cirurgia-catarata">
-     <div class="topo-titulo-botaoAgendar">
-       <h2>Cirurgia de Catarata</h2>
-       <button class="btn-agendar" onclick="enviarSolicitacao()">Enviar Solicitação de Agendamento</button>
-    </div>
-    <hr>
+      <div class="topo-titulo-botaoAgendar">
+        <h2>{{ procedimento.nome }}</h2>
+        <button class="btn-agendar" onclick="enviarSolicitacao()">Enviar Solicitação de Agendamento</button>
+      </div>
+      <hr>
 
-    <div class="info-cirurgia">
-      <img src="../static/images/image 4.png" alt="Cirurgia de Catarata">
-      <ul class="detalhes">
-        <li>
-          <i class="bi bi-calendar-event-fill"></i>
-          <div class="textos">
-            <strong>Horários disponíveis:</strong>
-            <p>das 13h às 17h – Quartas e Sextas-feiras.</p>
-          </div>
-        </li>
-        <li>
-          <i class="bi bi-clock-fill"></i>
-          <div class="textos">
-            <strong>Tempo de procedimento:</strong>
-            <p>Cerca de 20 a 30 minutos.</p>
-          </div>
-        </li>
-        <li>
-          <i class="bi bi-hospital-fill"></i>
-          <div class="textos">
-            <strong>Internação:</strong>
-            <p>Não requer internação, o paciente retorna para casa no mesmo dia.</p>
-          </div>
-        </li>
-        <li>
-          <i class="bi bi-heart-fill"></i>
-          <div class="textos">
-            <strong>Recuperação:</strong>
-            <p>Melhoras significativas nos primeiros dias, com restrições mínimas.</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-    
+      <div class="info-cirurgia">
+        <img src="{{ procedimento.foto.url }}" alt="{{ procedimento.nome }}" style="max-width: 250px; max-height: 250px;">
+        <ul class="detalhes">
+          <li>
+            <i class="bi bi-calendar-event-fill"></i>
+            <div class="textos">
+              <strong>Horários disponíveis:</strong>
+              <p>{{ procedimento.horarios_disponiveis }}</p>
+            </div>
+          </li>
+          <li>
+            <i class="bi bi-clock-fill"></i>
+            <div class="textos">
+              <strong>Tempo de procedimento:</strong>
+              <p>{{ procedimento.tempo_procedimento }}</p>
+            </div>
+          </li>
+          <li>
+            <i class="bi bi-hospital-fill"></i>
+            <div class="textos">
+              <strong>Internação:</strong>
+              <p>{{ procedimento.informacao_internacao }}</p>
+            </div>
+          </li>
+          <li>
+            <i class="bi bi-heart-fill"></i>
+            <div class="textos">
+              <strong>Recuperação:</strong>
+              <p>{{ procedimento.informacao_recuperacao }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
       <p class="descricao">
-        A cirurgia de catarata é indicada para remover o cristalino do olho que se tornou opaco, devolvendo clareza à visão. A condição pode surgir com o envelhecimento, doenças como diabetes, uso prolongado de medicamentos ou traumas oculares.
-        A técnica mais utilizada é a facoemulsificação, onde o cristalino opaco é fragmentado com ultrassom e substituído por uma lente intraocular (LIO). É um procedimento rápido, indolor e com alta taxa de sucesso.
-        Indicada para pacientes com catarata que apresentem perda visual significativa. A decisão pela cirurgia é feita após avaliação oftalmológica completa.
-        É um procedimento seguro, mas exige acompanhamento pós-operatório. Riscos raros incluem infecção, inflamação ou deslocamento da lente intraocular.
+        {{ procedimento.descricao }}
       </p>
     </section>
 
@@ -90,13 +87,18 @@
       <h2>Médico Especialista</h2>
       <hr>
       <div class="cards">
-        <div class="card">
-          <img src="../static/images/image 11.png" alt="Dr. Sydney Carvalho">
-          <h3>Dr. Sydney Carvalho</h3>
-          <p>Especialista catarata e cirurgia de catarata</p>
-        </div>
+        {% for medico in medicos %}
+          <div class="card">
+            <img src="{{ medico.foto.url }}" alt="{{ medico.nome }}">
+            <h3>{{ medico.nome }}</h3>
+            <p>{{ medico.especialidades }}</p>
+          </div>
+        {% empty %}
+          <p>Nenhum médico cadastrado para este procedimento.</p>
+        {% endfor %}
       </div>
     </section>
+
   </main>
  
 
