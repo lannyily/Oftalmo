@@ -2,6 +2,35 @@ from django.contrib import admin
 from .models import Medico, Procedimento
 from .models import ProcedimentoDestaque
 from .models import MedicoDestaque
+from .models import Consulta
+from .models import ConsultaConfirmada
+from django.contrib.admin import DateFieldListFilter
+
+@admin.register(ConsultaConfirmada)
+class ConsultaConfirmadaAdmin(admin.ModelAdmin):
+    list_display = ['nome', 'medico', 'dia', 'data_atribuida', 'criado_em']
+    list_filter = [
+        'dia',
+        'medico',
+        ('data_atribuida', DateFieldListFilter),  # filtro de data exata
+    ]
+    search_fields = ['nome', 'email', 'cpf']
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.filter(confirmada=True)
+
+@admin.register(Consulta)
+class ConsultaAdmin(admin.ModelAdmin):
+    list_display = ['nome', 'medico', 'dia', 'confirmada', 'data_atribuida', 'criado_em']
+    list_filter = ['dia', 'medico', 'confirmada']
+    search_fields = ['nome', 'email', 'cpf']
+    actions = ['confirmar_consultas']
+
+    @admin.action(description='Confirmar consultas selecionadas')
+    def confirmar_consultas(self, request, queryset):
+        queryset.update(confirmada=True)
+
 
 @admin.register(Medico)
 class MedicoAdmin(admin.ModelAdmin):

@@ -12,80 +12,75 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" 
   rel="stylesheet">
 
- <!-- BOOTSTRAP ICONS -->
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- BOOTSTRAP ICONS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
-  <title>Perfil Médico</title>
+  <title>Formulário de Agendamento</title>
 
   <link rel="website icon" type="png" href="../static/images/icon.png">
 
   <!-- LINK DO CSS -->
-  <link rel="stylesheet" href="{% static 'css/perfilMedico.css' %}">
+  <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
   
 </head>
 <body>
-  <header class="header">
+  <header class="cabecalho">
     <div class="logo">Oftalmo+</div>
-    <nav class="navbar">
+    <nav>
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'procedimentos' %}">Serviços</a>
         <a href="{% url 'medicos' %}">Médicos</a>
         <button class="btn-entrar" onclick="window.location.href='{% url 'admin:index' %}'">Entrar</button>
-
     </nav>
   </header>
 
-  <main >
-    <section class="medico">
-        <div class="topo-titulo-botaoAgendar">
-        <h2>Dr. {{ medico.nome }}</h2>
-        <button class="btn-agendar" onclick="enviarSolicitacao()">Enviar Solicitação de Agendamento</button>
-      </div>
-      <hr>
-    </div>
-    
+    <main>
+        <h2>Solicitação de Agendamento</h2>
+        <hr>
+        <form id="formAgendamento" method="POST" action="{% url 'formularioConsulta' %}">
+          {% csrf_token %}
+          <input type="text" name="nome" placeholder="Nome" required>
+          <input type="tel" name="telefone" placeholder="Telefone" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="text" name="cpf" placeholder="CPF" required>
 
-    <div class="detalhes-medico">
-      <img src="{{ medico.foto.url }}" alt="Foto de {{ medico.nome }}">
-      <ul class="detalhes">
-        <li>
+          <select name="dia" required>
+            <option value="">Melhor dia para Consulta</option>
+            <option value="segunda">Segunda</option>
+            <option value="terca">Terça</option>
+            <option value="quarta">Quarta</option>
+            <option value="quinta">Quinta</option>
+            <option value="sexta">Sexta</option>
+          </select>
 
-            <div class="textos">
-                <p><strong>CMR:</strong> {{ medico.numero_cmr }}</p>
-              </div>
-        </li>
-        <li>
-          <div class="textos">
-            <strong>{{ medico.especialidades }}</strong>
-            <p>{{ medico.formacao }}</p>
-          </div>
-        </li>
-          <li>
-            <div class="textos">
-                <strong><i class="bi bi-calendar"></i>Atendimentos:</strong>
-                <p>{{ medico.atendimento }}</p>
-            </div>
-          </li>
-        
-      </ul>
-    </div>
-    
+          <select name="medico" required>
+            <option value="">Médico</option>
+            {% for medico in medicos %}
+              <option value="{{ medico.id }}">Dr(a). {{ medico.nome }}</option>
+            {% endfor %}
+          </select>
 
-  </section class="diferencias">
 
-    <h3>Diferencias </h3>
-    {% for linha in medico.diferenciais.splitlines %}
-      <li>{{ linha }}</li>
-    {% endfor %}
-  </main>
+          <textarea name="mensagem" placeholder="Mensagem (opcional)"></textarea>
+
+          {% if mensagem_sucesso %}
+            <div id="mensagem" class="mensagem-sucesso">{{ mensagem_sucesso }}</div>
+          {% endif %}
+
+          <button type="submit">Enviar Solicitação</button>
+        </form>
+
+
+      </main>
+      
  
-
   <footer class="footer">
         <div class="container footer-content">
             <div class="footer-top">
                 <div class="footer-text">
-                    <h2>Oftalmo+</h2>
+                    <h2 class="logo">Oftalmo+</h2>
+
                     <div class="social-icons">
                         <a href="#"><i class="bi bi-instagram"></i></a>
                         <a href="#"><i class="bi bi-facebook"></i></a>
@@ -121,7 +116,6 @@
                         <li><a href="#">Contato</a></li>
                     </ul>
                 </div>
-                
             </div>
 
 
@@ -133,6 +127,6 @@
         </div>
     </footer>
 
-  <script src="../static/js/perfilMedico.js"></script>
+  <script src="../static/js/formularioConsulta.js"></script>
 </body>
 </html>

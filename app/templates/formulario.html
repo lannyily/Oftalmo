@@ -31,7 +31,7 @@
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'procedimentos' %}">Serviços</a>
         <a href="{% url 'medicos' %}">Médicos</a>
-        <button class="btn-entrar">Entrar</button>
+        <button class="btn-entrar" onclick="window.location.href='{% url 'admin:index' %}'">Entrar</button>
     </nav>
   </header>
 

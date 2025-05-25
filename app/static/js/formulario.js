@@ -1,15 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("formAgendamento").addEventListener("submit", function(event) {
-    event.preventDefault();
+  const form = document.getElementById("formAgendamento");
+  const mensagemDiv = document.getElementById("mensagem");
 
-    const nome = event.target.elements["nome"].value;
-    const mensagemDiv = document.getElementById("mensagemSucesso");
+  if (!form) return;
 
-    mensagemDiv.textContent = "Sua solicitação foi enviada com sucesso.";
-    mensagemDiv.style.display = "block";
+  form.addEventListener("submit", function(event) {
+    
+    if (mensagemDiv) {
+      mensagemDiv.textContent = "Enviando...";
+      mensagemDiv.style.display = "block";
+    }
 
-    this.reset(); 
+    
   });
 });
-
-  
