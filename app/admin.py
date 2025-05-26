@@ -5,6 +5,7 @@ from .models import MedicoDestaque
 from .models import Consulta
 from .models import ConsultaConfirmada
 from django.contrib.admin import DateFieldListFilter
+from .mensagem import enviar_mensagem_whatsapp
 
 @admin.register(ConsultaConfirmada)
 class ConsultaConfirmadaAdmin(admin.ModelAdmin):
@@ -25,11 +26,6 @@ class ConsultaAdmin(admin.ModelAdmin):
     list_display = ['nome', 'medico', 'dia', 'confirmada', 'data_atribuida', 'criado_em']
     list_filter = ['dia', 'medico', 'confirmada']
     search_fields = ['nome', 'email', 'cpf']
-    actions = ['confirmar_consultas']
-
-    @admin.action(description='Confirmar consultas selecionadas')
-    def confirmar_consultas(self, request, queryset):
-        queryset.update(confirmada=True)
 
 
 @admin.register(Medico)
