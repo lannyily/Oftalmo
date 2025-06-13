@@ -42,7 +42,7 @@
     <hr>
 
     <div class="conteudo">
-        <form method="GET" action="{% url 'procedimentos' %}">
+        <form method="GET" action="{% url 'procedimentos' %}" style="min-width: 300px;">
             <section class="filtros">
                 <div class="search-container">
                     <input type="text" id="search" name="q" value="{{ query }}" placeholder="Pesquisar..." />
@@ -77,25 +77,25 @@
     
         {% block content %}
             {% if procedimentos %}
-                <div class="conteiner-flex" style="display: flex; flex-direction: column;">
-                    <!-- Mostra a contagem de resultados acima dos cards -->
-                    <p class="result-count" style="margin-bottom: 16px;">
-                        {{ total_resultados }} resultado{{ total_resultados|pluralize }} encontrado{{ total_resultados|pluralize }}
-                    </p>
-
-                    <!-- Listagem dos cards -->
-                    <section class="cards" style="display: flex; flex-wrap: wrap;">
-                        {% for procedimento in procedimentos %}
-                            <div class="card" style="min-width: 400px; min-height: 100px; text-align: left;">
-                                <img src="{{ procedimento.foto.url }}" alt="{{ procedimento.nome }}">
-                                <div class="card-text">
-                                    <h4>{{ procedimento.nome }}</h4>
-                                    <p>{{ procedimento.descricao|truncatechars:100 }}</p>
-                                    <a href="{% url 'perfilProcedimento' procedimento.nome %}">leia mais →</a>
+                <div class="conteiner-flex">
+                    
+                        <!-- Mostra a contagem de resultados acima dos cards -->
+                        <p class="result-count" style="margin-bottom: 16px; align-items: center;">
+                            {{ total_resultados }} resultado{{ total_resultados|pluralize }} encontrado{{ total_resultados|pluralize }}
+                        </p>
+                        <!-- Listagem dos cards -->
+                        <section class="cards" style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
+                            {% for procedimento in procedimentos %}
+                                <div class="card" style="flex: 1 1 calc(50% - 16px); box-sizing: border-box; min-width: 300px; max-width: 400px; text-align: left;">
+                                    <img src="{{ procedimento.foto.url }}" alt="{{ procedimento.nome }}">
+                                    <div class="card-text">
+                                        <h4 style="font-size: 16px;">{{ procedimento.nome }}</h4>
+                                        <p style="font-size: 12px;">{{ procedimento.descricao|truncatechars:100 }}</p>
+                                        <a href="{% url 'perfilProcedimento' procedimento.nome %}">leia mais →</a>
+                                    </div>
                                 </div>
-                            </div>
-                        {% endfor %}
-                    </section>
+                            {% endfor %}
+                        </section>
                 </div>
             {% else %}
                 <p class="content-wrapper min-height">Nenhum procedimento encontrado...</p>

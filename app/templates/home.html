@@ -186,7 +186,7 @@
             <div class="cards-equipe">
                 {% for medico in medicos_destaque %}
                 <div class="card-equipe">
-                  <img src="{{ medico.foto.url }}" alt="{{ medico.nome }}">
+                  <img src="{{ medico.foto.url }}" alt="{{ medico.nome }}" style="max-width: 250px; max-height: 300px; width: auto; height: auto; object-fit: contain;">
                   <h3>{{ medico.nome }}</h3>
                   <p>{{ medico.especialidades }}</p>
                 </div>

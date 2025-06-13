@@ -8,5 +8,5 @@ class AppConfig(AppConfig):
 
     def ready(self):
         # Importa e registra os signals
-        import app.signals
+        from . import signals 
 

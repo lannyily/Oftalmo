@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+WHATSAPP_ENABLED = True
 # Application definition
 
 INSTALLED_APPS = [
