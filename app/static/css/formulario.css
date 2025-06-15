@@ -109,9 +109,36 @@
     }
   
     form {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(2, 1fr);
+  max-width: 700px;
+  margin: auto;
+  gap: 10px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.form-row:nth-child(2) { /* linha do email */
+  flex-direction: column;
+}
+
+.form-group {
+  flex: 1; /* Para que os campos ocupem igualmente o espaço na linha */
+}
+
+.form-row:nth-child(2) .form-group {
+  flex: none;
+  width: 100%;
+}
+
+
+
+form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
 }
 
 
@@ -157,7 +184,18 @@ select[name="procedimento"] {
   grid-column: span 2
 }
 
-  
+form button {
+  display: block;       /* Faz o botão ocupar só o necessário, não 100% */
+  margin: 20px auto 0;  /* Centraliza horizontalmente, com margem superior */
+  padding: 12px;
+  border: 1px solid #00a2c6;
+  color: #00a2c6;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
 /* Footer */
 .footer {
   background: #ededed;

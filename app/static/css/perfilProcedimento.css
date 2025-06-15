@@ -81,11 +81,12 @@ main {
 
 }
 
-.topo-titulo-botaoAgendar{
+a.topo-titulo-botaoAgendar{
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 7rem;
+  text-decoration: none;
   
 }
 
@@ -96,20 +97,7 @@ hr{
   padding: 20px;
 }
 
-.btn-agendar {
-  background-color: #0099aa;
-  color: white;
-  font-weight: bold;
-  padding: 0.5rem 1rem;
-  margin-bottom: 1rem;
-  border-radius: 20px;
-  cursor: pointer;
-  border: none;
-}
 
-.btn-agendar:hover{
-  background-color: #007a8a;
-}
 
 .info-cirurgia {
   display: flex;

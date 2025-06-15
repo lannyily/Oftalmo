@@ -185,17 +185,18 @@
     
             <div class="cards-equipe">
                 {% for medico in medicos_destaque %}
-                <div class="card-equipe">
-                  <img src="{{ medico.foto.url }}" alt="{{ medico.nome }}" style="max-width: 250px; max-height: 300px; width: auto; height: auto; object-fit: contain;">
-                  <h3>{{ medico.nome }}</h3>
-                  <p>{{ medico.especialidades }}</p>
-                </div>
+                <a href="{% url 'perfilMedico' medico.nome %}" class="card-equipe" style="text-decoration: none; color: inherit;">
+                    <img src="{{ medico.foto.url }}" alt="{{ medico.nome }}" style="max-width: 250px; max-height: 300px; width: auto; height: auto; object-fit: contain;">
+                    <h3>{{ medico.nome }}</h3>
+                    <p>{{ medico.especialidades }}</p>
+                </a>
                 {% empty %}
                 <div class="alert">
-                  Nenhum médico em destaque configurado
+                    Nenhum médico em destaque configurado
                 </div>
                 {% endfor %}
-              </div>
+            </div>
+
         </div>
     </section>
     

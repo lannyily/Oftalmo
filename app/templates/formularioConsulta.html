@@ -39,37 +39,81 @@
         <h2>Solicitação de Agendamento</h2>
         <hr>
         <form id="formAgendamento" method="POST" action="{% url 'formularioConsulta' %}">
-          {% csrf_token %}
-          <input type="text" name="nome" placeholder="Nome" required>
-          <input type="tel" name="telefone" placeholder="Telefone" required>
-          <input type="email" name="email" placeholder="Email" required>
-          <input type="text" name="cpf" placeholder="CPF" required>
+  {% csrf_token %}
 
-          <select name="dia" required>
-            <option value="">Melhor dia para Consulta</option>
-            <option value="segunda">Segunda</option>
-            <option value="terca">Terça</option>
-            <option value="quarta">Quarta</option>
-            <option value="quinta">Quinta</option>
-            <option value="sexta">Sexta</option>
-          </select>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="nome">Nome</label>
+      <input type="text" name="nome" placeholder="Nome completo" 
+             pattern="^[A-Za-zÀ-ÿ]{2,}(?:\s[A-Za-zÀ-ÿ]{2,})+$" 
+             title="Digite seu nome completo (nome e sobrenome)" required>
+    </div>
+    <div class="form-group">
+      <label for="telefone">Telefone</label>
+      <input type="tel" name="telefone" id="telefone" placeholder="(11) 91234-5678"
+             pattern="\(\d{2}\)\s?\d{5}-\d{4}" 
+             title="Formato esperado: (11) 91234-5678" required>
+    </div>
+  </div>
 
-          <select name="medico" required>
-            <option value="">Médico</option>
-            {% for medico in medicos %}
-              <option value="{{ medico.id }}">Dr(a). {{ medico.nome }}</option>
-            {% endfor %}
-          </select>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" name="email" placeholder="Email" required>
+    </div>
+  </div>
 
+  <div class="form-row">
+    <div class="form-group">
+      <label for="cpf">CPF</label>
+      <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" 
+             pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" 
+             title="Formato esperado: 000.000.000-00" required>
+    </div>
+    <div class="form-group">
+      <label for="procedimento">Tipo de Procedimento</label>
+      <select name="procedimento" required>
+        <option value="">Tipo de Procedimento</option>
+        <option value="consulta">Consulta</option>
+        <option value="exame">Exame</option>
+        <option value="cirurgia">Cirurgia</option>
+      </select>
+    </div>
+  </div>
 
-          <textarea name="mensagem" placeholder="Mensagem (opcional)"></textarea>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="dia">Melhor dia para Consulta</label>
+      <select name="dia" required>
+        <option value="">Melhor dia para Consulta</option>
+        <option value="segunda">Segunda</option>
+        <option value="terca">Terça</option>
+        <option value="quarta">Quarta</option>
+        <option value="quinta">Quinta</option>
+        <option value="sexta">Sexta</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="medico">Médico</label>
+      <select name="medico" required>
+        <option value="">Médico</option>
+        {% for medico in medicos %}
+          <option value="{{ medico.id }}">Dr(a). {{ medico.nome }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
 
-          {% if mensagem_sucesso %}
-            <div id="mensagem" class="mensagem-sucesso">{{ mensagem_sucesso }}</div>
-          {% endif %}
+  <div class="form-row">
+    <div class="form-group full-width">
+      <label for="mensagem">Mensagem (opcional)</label>
+      <textarea name="mensagem" placeholder="Mensagem (opcional)"></textarea>
+    </div>
+  </div>
 
-          <button type="submit">Enviar Solicitação</button>
-        </form>
+  <button type="submit">Enviar Solicitação</button>
+</form>
+
 
 
       </main>
@@ -127,6 +171,6 @@
         </div>
     </footer>
 
-  <script src="../static/js/formularioConsulta.js"></script>
+  <script src="{% static 'js/formularioConsulta.js' %}"></script>
 </body>
 </html>

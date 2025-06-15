@@ -41,7 +41,8 @@
     <section class="cirurgia-catarata">
       <div class="topo-titulo-botaoAgendar">
         <h2>{{ procedimento.nome }}</h2>
-        <button class="btn-agendar" onclick="enviarSolicitacao()">Enviar Solicitação de Agendamento</button>
+        
+        <a href="{% url 'formularioConsulta' %}" class="btn-agendar">Enviar Solicitação de Agendamento</a>
       </div>
       <hr>
 
