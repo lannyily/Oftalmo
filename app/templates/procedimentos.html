@@ -65,9 +65,13 @@
                         {% if 'cirurgia' in tipos_selecionados %}checked{% endif %}> Cirurgias Oftalmológicas</label>
                 </div>
                 
-    
-                <select id="select-medico">
-                    <option selected>Médico(a)</option>
+                <select name="medico" id="select-medico">
+                    <option value="">Todos os Médicos</option>
+                    {% for medico in medicos %}
+                        <option value="{{ medico.id }}" {% if medico.id|stringformat:"s" == medico_selecionado %}selected{% endif %}>
+                            Dr(a). {{ medico.nome }}
+                        </option>
+                    {% endfor %}
                 </select>
 
                 <button class="btn-filtrar" type="submit">Filtrar</button>
