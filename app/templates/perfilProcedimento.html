@@ -38,11 +38,11 @@
     </header>
 
   <main >
-    <section class="cirurgia-catarata">
-      <div class="topo-titulo-botaoAgendar">
+    <section class="cirurgia-catarata" style="margin-top: 100px;">
+      <div class="topo-titulo-botaoAgendar" style="display: flex; justify-content: space-between;">
         <h2>{{ procedimento.nome }}</h2>
         
-        <a href="{% url 'formularioConsulta' %}" class="btn-agendar">Enviar Solicitação de Agendamento</a>
+        <button href="{% url 'formularioConsulta' %}" class="btn-agendar" style="background-color: #0099aa; color: white; border: none; padding: 0.5rem 1rem; font-weight: bold; border-radius: 20px; cursor: pointer; align-self: flex-start;">Enviar Solicitação de Agendamento</button>
       </div>
       <hr>
 
