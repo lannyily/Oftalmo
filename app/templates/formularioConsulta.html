@@ -21,7 +21,7 @@
   <link rel="website icon" type="png" href="../static/images/icon.png">
 
   <!-- LINK DO CSS -->
-  <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+  <link rel="stylesheet" href="{% static 'css/formularioC.css' %}">
   
 </head>
 <body>
@@ -70,36 +70,45 @@
              pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" 
              title="Formato esperado: 000.000.000-00" required>
     </div>
-    <div class="form-group">
-      <label for="procedimento">Tipo de Procedimento</label>
-      <select name="procedimento" required>
-        <option value="consulta">Consulta</option>
+   <div class="form-group">
+      <label for="tipo">Tipo de Procedimento</label>
+      <select name="tipo" id="tipoProcedimento" required>
+        <option value="">Selecione o tipo</option>
+        <option value="rotina">Exames de Rotina</option>
+        <option value="avancado">Exames Diagnósticos Avançados</option>
+        <option value="ambulatorial">Tratamentos Ambulatoriais</option>
+        <option value="cirurgia">Cirurgias Oftalmológicas</option>
       </select>
     </div>
-  </div>
 
-  <div class="form-row">
     <div class="form-group">
-      <label for="dia">Melhor dia para Consulta</label>
-      <select name="dia" required>
-        <option value="">Melhor dia para Consulta</option>
-        <option value="segunda">Segunda</option>
-        <option value="terca">Terça</option>
-        <option value="quarta">Quarta</option>
-        <option value="quinta">Quinta</option>
-        <option value="sexta">Sexta</option>
+      <label for="procedimento">Procedimento</label>
+      <select name="procedimento" id="procedimento" required disabled>
+        <option value="">Selecione o procedimento</option>
       </select>
     </div>
+
+    <div class="form-group">
+      <label for="dia">Dia da Semana</label>
+      <select name="dia" id="diaSemana" required disabled>
+        <option value="">Selecione o dia</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="turno">Turno</label>
+      <select name="turno" id="turno" required disabled>
+        <option value="">Selecione o turno</option>
+      </select>
+    </div>
+
     <div class="form-group">
       <label for="medico">Médico</label>
-      <select name="medico" required>
-        <option value="">Médico</option>
-        {% for medico in medicos %}
-          <option value="{{ medico.id }}">Dr(a). {{ medico.nome }}</option>
-        {% endfor %}
+      <select name="medico" id="medico" required disabled>
+        <option value="">Selecione o médico</option>
       </select>
     </div>
-  </div>
+
 
   <div class="form-row">
     <div class="form-group full-width">
@@ -169,5 +178,84 @@
     </footer>
 
   <script src="{% static 'js/formularioConsulta.js' %}"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const tipoSelect = document.getElementById('tipoProcedimento');
+    const procedimentoSelect = document.getElementById('procedimento');
+    const diaSelect = document.getElementById('diaSemana');
+    const turnoSelect = document.getElementById('turno');
+    const medicoSelect = document.getElementById('medico');
+
+    tipoSelect.addEventListener('change', function () {
+      const tipo = this.value;
+      procedimentoSelect.innerHTML = '<option value="">Carregando...</option>';
+      procedimentoSelect.disabled = true;
+
+      fetch(`/ajax/procedimentos/?tipo=${tipo}`)
+        .then(res => res.json())
+        .then(data => {
+          procedimentoSelect.innerHTML = '<option value="">Selecione o procedimento</option>';
+          data.forEach(proc => {
+            procedimentoSelect.innerHTML += `<option value="${proc.id}">${proc.nome}</option>`;
+          });
+          procedimentoSelect.disabled = false;
+        });
+    });
+
+    procedimentoSelect.addEventListener('change', function () {
+      const procedimentoId = this.value;
+
+      // Dias
+      diaSelect.innerHTML = '<option value="">Carregando...</option>';
+      diaSelect.disabled = true;
+      fetch(`/ajax/dias/?procedimento_id=${procedimentoId}`)
+        .then(res => res.json())
+        .then(data => {
+          diaSelect.innerHTML = '<option value="">Selecione o dia</option>';
+          data.forEach(dia => {
+            diaSelect.innerHTML += `<option value="${dia}">${capitalize(dia)}</option>`;
+          });
+          diaSelect.disabled = false;
+        });
+
+      // Médicos
+      medicoSelect.innerHTML = '<option value="">Carregando...</option>';
+      medicoSelect.disabled = true;
+      fetch(`/ajax/medicos/?procedimento_id=${procedimentoId}`)
+        .then(res => res.json())
+        .then(data => {
+          medicoSelect.innerHTML = '<option value="">Selecione o médico</option>';
+          data.forEach(med => {
+            medicoSelect.innerHTML += `<option value="${med.id}">Dr(a). ${med.nome}</option>`;
+          });
+          medicoSelect.disabled = false;
+        });
+    });
+
+    diaSelect.addEventListener('change', function () {
+      const dia = this.value;
+      const procedimentoId = procedimentoSelect.value;
+
+      turnoSelect.innerHTML = '<option value="">Carregando...</option>';
+      turnoSelect.disabled = true;
+
+      fetch(`/ajax/turnos/?procedimento_id=${procedimentoId}&dia=${dia}`)
+        .then(res => res.json())
+        .then(data => {
+          turnoSelect.innerHTML = '<option value="">Selecione o turno</option>';
+          data.forEach(turno => {
+            turnoSelect.innerHTML += `<option value="${turno}">${capitalize(turno)}</option>`;
+          });
+          turnoSelect.disabled = false;
+        });
+    });
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+  });
+
+  </script>
 </body>
 </html>

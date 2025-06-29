@@ -70,6 +70,7 @@ class Medico(ModelBase):
     def __str__(self):
         return self.nome
 
+
 class Procedimento(ModelBase):
     TIPO_CHOICES = [
         ('rotina', 'Exames de Rotina'),
@@ -82,13 +83,43 @@ class Procedimento(ModelBase):
     nome = models.CharField(max_length=100)
     descricao = models.TextField()
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
-    horarios_disponiveis = models.TextField(help_text="Ex: Seg-Sex, 08h às 10h")
+   
     tempo_procedimento = models.DurationField(help_text="Ex: 00:30:00 para 30 minutos")
     informacao_internacao = models.TextField()
     informacao_recuperacao = models.TextField()
 
     def __str__(self):
         return self.nome
+
+
+class HorarioProcedimento(models.Model):
+    DIA_CHOICES = [
+        ('segunda', 'Segunda-feira'),
+        ('terca', 'Terça-feira'),
+        ('quarta', 'Quarta-feira'),
+        ('quinta', 'Quinta-feira'),
+        ('sexta', 'Sexta-feira'),
+    ]
+
+    TURNO_CHOICES = [
+        ('manha', 'Manhã'),
+        ('tarde', 'Tarde'),
+    ]
+
+    procedimento = models.ForeignKey(Procedimento, on_delete=models.CASCADE, related_name='horarios')
+    dia = models.CharField(max_length=10, choices=DIA_CHOICES)
+    turno = models.CharField(max_length=10, choices=TURNO_CHOICES)
+    hora_inicio = models.TimeField()
+    hora_fim = models.TimeField()
+
+    class Meta:
+        unique_together = ('procedimento', 'dia', 'turno', 'hora_inicio', 'hora_fim')
+        ordering = ['procedimento', 'dia', 'turno', 'hora_inicio']
+
+    def __str__(self):
+        return f'{self.procedimento.nome} - {self.get_dia_display()} ({self.get_turno_display()}) {self.hora_inicio} às {self.hora_fim}'
+
+
 
 class ProcedimentoDestaque(models.Model):
     procedimento = models.OneToOneField(
