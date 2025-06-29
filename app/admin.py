@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Medico, Procedimento, ProcedimentoDestaque, MedicoDestaque, Consulta, ConsultaConfirmada, HorarioProcedimento
+from .models import Medico, Procedimento, ProcedimentoDestaque, MedicoDestaque, Agenda, AgendaConfirmada, HorarioProcedimento
 from django.contrib.admin import DateFieldListFilter
 
-@admin.register(ConsultaConfirmada)
-class ConsultaConfirmadaAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'medico', 'dia', 'data_atribuida', 'criado_em']
+@admin.register(AgendaConfirmada)
+class AgendaConfirmadaAdmin(admin.ModelAdmin):
+    list_display = ['nome', 'medico', 'dia', 'turno', 'tipo', 'procedimento', 'data_atribuida', 'criado_em']
     list_filter = [
         'dia',
         'medico',
@@ -15,9 +15,9 @@ class ConsultaConfirmadaAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         return super().get_queryset(request).filter(confirmada=True)
 
-@admin.register(Consulta)
-class ConsultaAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'medico', 'dia', 'confirmada', 'data_atribuida', 'criado_em']
+@admin.register(Agenda)
+class AgendaAdmin(admin.ModelAdmin):
+    list_display = ['nome', 'medico', 'dia', 'confirmada', 'data_atribuida', 'turno', 'tipo', 'procedimento', 'criado_em']
     list_filter = ['dia', 'medico', 'confirmada']
     search_fields = ['nome', 'email', 'cpf']
 

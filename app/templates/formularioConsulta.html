@@ -25,105 +25,93 @@
   
 </head>
 <body>
-  <header class="cabecalho">
-    <div class="logo">Oftalmo+</div>
-    <nav>
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'procedimentos' %}">Serviços</a>
-        <a href="{% url 'medicos' %}">Médicos</a>
-        <button class="btn-entrar" onclick="window.location.href='{% url 'admin:index' %}'">Entrar</button>
-    </nav>
-  </header>
+    <header class="cabecalho">
+      <div class="logo">Oftalmo+</div>
+      <nav>
+          <a href="{% url 'home' %}">Home</a>
+          <a href="{% url 'procedimentos' %}">Serviços</a>
+          <a href="{% url 'medicos' %}">Médicos</a>
+          <button class="btn-entrar" onclick="window.location.href='{% url 'admin:index' %}'">Entrar</button>
+      </nav>
+    </header>
 
     <main>
         <h2>Solicitação de Agendamento</h2>
         <hr>
         <form id="formAgendamento" method="POST" action="{% url 'formularioConsulta' %}">
-  {% csrf_token %}
+      {% csrf_token %}
 
-  <div class="form-row">
-    <div class="form-group">
-      <label for="nome">Nome</label>
-      <input type="text" name="nome" placeholder="Nome completo" 
-             pattern="^[A-Za-zÀ-ÿ]{2,}(?:\s[A-Za-zÀ-ÿ]{2,})+$" 
-             title="Digite seu nome completo (nome e sobrenome)" required>
-    </div>
-    <div class="form-group">
-      <label for="telefone">Telefone</label>
-      <input type="tel" name="telefone" id="telefone" placeholder="(00) 00000-0000"
-             pattern="\(\d{2}\)\s?\d{5}-\d{4}" 
-             title="Formato esperado: (11) 91234-5678" required>
-    </div>
-  </div>
+      <div class="form-row">
+        <div class="form-group">
+          
+          <input type="text" name="nome" placeholder="Nome completo" 
+                  pattern="^[A-Za-zÀ-ÿ]{2,}(?:\s[A-Za-zÀ-ÿ]{2,})+$" 
+                  title="Digite seu nome completo (nome e sobrenome)" required>
+        </div>
+        <div class="form-group">
+          
+          <input type="tel" name="telefone" id="telefone" placeholder="Telefone (ex: (00) 00000-0000)"
+                  pattern="\(\d{2}\)\s?\d{5}-\d{4}" 
+                  title="Formato esperado: (11) 91234-5678" required>
+        </div>
+      </div>
 
-  <div class="form-row">
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" name="email" placeholder="Email" required>
-    </div>
-  </div>
+      <div class="form-row">
+        <div class="form-group">
+          
+          <input type="email" name="email" placeholder="Email" required>
+        </div>
+      </div>
 
-  <div class="form-row">
-    <div class="form-group">
-      <label for="cpf">CPF</label>
-      <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" 
-             pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" 
-             title="Formato esperado: 000.000.000-00" required>
-    </div>
-   <div class="form-group">
-      <label for="tipo">Tipo de Procedimento</label>
-      <select name="tipo" id="tipoProcedimento" required>
-        <option value="">Selecione o tipo</option>
-        <option value="rotina">Exames de Rotina</option>
-        <option value="avancado">Exames Diagnósticos Avançados</option>
-        <option value="ambulatorial">Tratamentos Ambulatoriais</option>
-        <option value="cirurgia">Cirurgias Oftalmológicas</option>
-      </select>
-    </div>
+      <div class="form-groups">
+        <div class="form-column">
+          
+          <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" 
+                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" 
+                title="Formato esperado: 000.000.000-00" required>
+          
+          <select name="tipo" id="tipoProcedimento" required>
+            <option value="">Selecione o tipo de procedimento</option>
+             <option value="consulta">Consulta</option>
+            <option value="rotina">Exames de Rotina</option>
+            <option value="avancado">Exames Diagnósticos Avançados</option>
+            <option value="ambulatorial">Tratamentos Ambulatoriais</option>
+            <option value="cirurgia">Cirurgias Oftalmológicas</option>
+          </select>
+          
+          <select name="procedimento" id="procedimento" required disabled>
+            <option value="">Selecione o procedimento</option>
+          </select>
+          
+        </div>
 
-    <div class="form-group">
-      <label for="procedimento">Procedimento</label>
-      <select name="procedimento" id="procedimento" required disabled>
-        <option value="">Selecione o procedimento</option>
-      </select>
-    </div>
+        <div class="form-column">
+          
+          <select name="dia" id="diaSemana" required disabled>
+            <option value="">Selecione o dia da semana</option>
+          </select>
+          
+          <select name="turno" id="turno" required disabled>
+            <option value="">Selecione o turno</option>
+          </select>
+          
+          <select name="medico" id="medico" required disabled>
+            <option value="">Selecione o médico</option>
+          </select>
 
-    <div class="form-group">
-      <label for="dia">Dia da Semana</label>
-      <select name="dia" id="diaSemana" required disabled>
-        <option value="">Selecione o dia</option>
-      </select>
-    </div>
+        </div>
+      </div>
 
-    <div class="form-group">
-      <label for="turno">Turno</label>
-      <select name="turno" id="turno" required disabled>
-        <option value="">Selecione o turno</option>
-      </select>
-    </div>
+      <div class="form-row">
+        <div class="form-group full-width form-mensagem">
+          <textarea name="mensagem" placeholder="Mensagem (opcional)"></textarea>
+        </div>
+      </div>
 
-    <div class="form-group">
-      <label for="medico">Médico</label>
-      <select name="medico" id="medico" required disabled>
-        <option value="">Selecione o médico</option>
-      </select>
-    </div>
+      <button type="submit">Enviar Solicitação</button>
+      </form>
 
-
-  <div class="form-row">
-    <div class="form-group full-width">
-      <label for="mensagem">Mensagem (opcional)</label>
-      <textarea name="mensagem" placeholder="Mensagem (opcional)"></textarea>
-    </div>
-  </div>
-
-  <button type="submit">Enviar Solicitação</button>
-</form>
-
-
-
-      </main>
-      
+    </main>
  
   <footer class="footer">
         <div class="container footer-content">
@@ -181,81 +169,126 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-    const tipoSelect = document.getElementById('tipoProcedimento');
-    const procedimentoSelect = document.getElementById('procedimento');
-    const diaSelect = document.getElementById('diaSemana');
-    const turnoSelect = document.getElementById('turno');
-    const medicoSelect = document.getElementById('medico');
+      const tipoSelect = document.getElementById('tipoProcedimento');
+      const procedimentoSelect = document.getElementById('procedimento');
+      const diaSelect = document.getElementById('diaSemana');
+      const turnoSelect = document.getElementById('turno');
+      const medicoSelect = document.getElementById('medico');
 
-    tipoSelect.addEventListener('change', function () {
-      const tipo = this.value;
-      procedimentoSelect.innerHTML = '<option value="">Carregando...</option>';
-      procedimentoSelect.disabled = true;
+      tipoSelect.addEventListener('change', function () {
+        const tipo = this.value;
 
-      fetch(`/ajax/procedimentos/?tipo=${tipo}`)
-        .then(res => res.json())
-        .then(data => {
-          procedimentoSelect.innerHTML = '<option value="">Selecione o procedimento</option>';
-          data.forEach(proc => {
-            procedimentoSelect.innerHTML += `<option value="${proc.id}">${proc.nome}</option>`;
-          });
+        if (tipo === 'consulta') {
+          // Consulta fixa
+          procedimentoSelect.innerHTML = '<option value="consulta">Consulta</option>';
           procedimentoSelect.disabled = false;
-        });
-    });
 
-    procedimentoSelect.addEventListener('change', function () {
-      const procedimentoId = this.value;
-
-      // Dias
-      diaSelect.innerHTML = '<option value="">Carregando...</option>';
-      diaSelect.disabled = true;
-      fetch(`/ajax/dias/?procedimento_id=${procedimentoId}`)
-        .then(res => res.json())
-        .then(data => {
+          // Dias: segunda a sexta
+          const dias = ['segunda', 'terca', 'quarta', 'quinta', 'sexta'];
           diaSelect.innerHTML = '<option value="">Selecione o dia</option>';
-          data.forEach(dia => {
+          dias.forEach(dia => {
             diaSelect.innerHTML += `<option value="${dia}">${capitalize(dia)}</option>`;
           });
           diaSelect.disabled = false;
-        });
 
-      // Médicos
-      medicoSelect.innerHTML = '<option value="">Carregando...</option>';
-      medicoSelect.disabled = true;
-      fetch(`/ajax/medicos/?procedimento_id=${procedimentoId}`)
-        .then(res => res.json())
-        .then(data => {
-          medicoSelect.innerHTML = '<option value="">Selecione o médico</option>';
-          data.forEach(med => {
-            medicoSelect.innerHTML += `<option value="${med.id}">Dr(a). ${med.nome}</option>`;
-          });
-          medicoSelect.disabled = false;
-        });
-    });
-
-    diaSelect.addEventListener('change', function () {
-      const dia = this.value;
-      const procedimentoId = procedimentoSelect.value;
-
-      turnoSelect.innerHTML = '<option value="">Carregando...</option>';
-      turnoSelect.disabled = true;
-
-      fetch(`/ajax/turnos/?procedimento_id=${procedimentoId}&dia=${dia}`)
-        .then(res => res.json())
-        .then(data => {
-          turnoSelect.innerHTML = '<option value="">Selecione o turno</option>';
-          data.forEach(turno => {
-            turnoSelect.innerHTML += `<option value="${turno}">${capitalize(turno)}</option>`;
-          });
+          // Turno fixo: manhã
+          turnoSelect.innerHTML = '<option value="manha">Manhã</option>';
           turnoSelect.disabled = false;
-        });
+
+          // Médicos: buscar todos
+          medicoSelect.innerHTML = '<option value="">Carregando...</option>';
+          medicoSelect.disabled = true;
+          fetch(`/ajax/medicos/?procedimento_id=consulta`)  // seu back deve tratar o ID "consulta"
+            .then(res => res.json())
+            .then(data => {
+              medicoSelect.innerHTML = '<option value="">Selecione o médico</option>';
+              data.forEach(med => {
+                medicoSelect.innerHTML += `<option value="${med.id}">Dr(a). ${med.nome}</option>`;
+              });
+              medicoSelect.disabled = false;
+            });
+
+        } else {
+          // Para os outros tipos: carregar dinamicamente
+          procedimentoSelect.innerHTML = '<option value="">Carregando...</option>';
+          procedimentoSelect.disabled = true;
+
+          fetch(`/ajax/procedimentos/?tipo=${tipo}`)
+            .then(res => res.json())
+            .then(data => {
+              procedimentoSelect.innerHTML = '<option value="">Selecione o procedimento</option>';
+              data.forEach(proc => {
+                procedimentoSelect.innerHTML += `<option value="${proc.id}">${proc.nome}</option>`;
+              });
+              procedimentoSelect.disabled = false;
+            });
+
+          // Limpa os outros campos
+          diaSelect.innerHTML = '<option value="">Selecione o dia</option>';
+          diaSelect.disabled = true;
+          turnoSelect.innerHTML = '<option value="">Selecione o turno</option>';
+          turnoSelect.disabled = true;
+          medicoSelect.innerHTML = '<option value="">Selecione o médico</option>';
+          medicoSelect.disabled = true;
+        }
+      });
+
+      procedimentoSelect.addEventListener('change', function () {
+        const procedimentoId = this.value;
+
+        if (procedimentoId === 'consulta') return; // já tratado
+
+        // Dias disponíveis
+        diaSelect.innerHTML = '<option value="">Carregando...</option>';
+        diaSelect.disabled = true;
+        fetch(`/ajax/dias/?procedimento_id=${procedimentoId}`)
+          .then(res => res.json())
+          .then(data => {
+            diaSelect.innerHTML = '<option value="">Selecione o dia</option>';
+            data.forEach(dia => {
+              diaSelect.innerHTML += `<option value="${dia}">${capitalize(dia)}</option>`;
+            });
+            diaSelect.disabled = false;
+          });
+
+        // Médicos
+        medicoSelect.innerHTML = '<option value="">Carregando...</option>';
+        medicoSelect.disabled = true;
+        fetch(`/ajax/medicos/?procedimento_id=${procedimentoId}`)
+          .then(res => res.json())
+          .then(data => {
+            medicoSelect.innerHTML = '<option value="">Selecione o médico</option>';
+            data.forEach(med => {
+              medicoSelect.innerHTML += `<option value="${med.id}">Dr(a). ${med.nome}</option>`;
+            });
+            medicoSelect.disabled = false;
+          });
+      });
+
+      diaSelect.addEventListener('change', function () {
+        const dia = this.value;
+        const procedimentoId = procedimentoSelect.value;
+
+        if (procedimentoId === 'consulta') return; // turno fixo
+
+        turnoSelect.innerHTML = '<option value="">Carregando...</option>';
+        turnoSelect.disabled = true;
+
+        fetch(`/ajax/turnos/?procedimento_id=${procedimentoId}&dia=${dia}`)
+          .then(res => res.json())
+          .then(data => {
+            turnoSelect.innerHTML = '<option value="">Selecione o turno</option>';
+            data.forEach(turno => {
+              turnoSelect.innerHTML += `<option value="${turno}">${capitalize(turno)}</option>`;
+            });
+            turnoSelect.disabled = false;
+          });
+      });
+
+      function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
     });
-
-    function capitalize(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-    }
-  });
-
   </script>
 </body>
 </html>

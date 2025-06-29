@@ -170,12 +170,15 @@ DIAS_SEMANA = [
     ('sexta', 'Sexta'),
 ]
 
-class Consulta(models.Model):
+class Agenda(models.Model):
     nome = models.CharField(max_length=100)
     telefone = models.CharField(max_length=20)
     email = models.EmailField()
     cpf = models.CharField(max_length=14)
     dia = models.CharField(max_length=10, choices=DIAS_SEMANA)
+    tipo = models.CharField(max_length=50)
+    procedimento = models.CharField(max_length=50, null=True, blank=True)
+    turno = models.CharField(max_length=20)
     medico = models.ForeignKey(Medico, on_delete=models.CASCADE)
     mensagem = models.TextField(blank=True)
     data_atribuida = models.DateField(null=True, blank=True)
@@ -186,14 +189,14 @@ class Consulta(models.Model):
     def __str__(self):
         return f'{self.nome} - {self.dia} - {self.medico.nome}'
     
-class ConsultaConfirmadaManager(models.Manager):
+class AgendaConfirmadaManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(confirmada=True)
 
-class ConsultaConfirmada(Consulta):
-    objects = ConsultaConfirmadaManager()
+class AgendaConfirmada(Agenda):
+    objects = AgendaConfirmadaManager()
 
     class Meta:
         proxy = True
-        verbose_name = "Consulta Confirmada"
+        verbose_name = "Agenda Confirmada"
         verbose_name_plural = "Calendário de Agendamento"

@@ -17,6 +17,7 @@
     width: 100%;
     background-color: white; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
   }
   
 .cabecalho {
@@ -78,7 +79,6 @@ h2{
     margin: 1px
 
 }
-
     
 button {
     border: 1px solid #00a2c6;
@@ -98,8 +98,6 @@ button:hover{
     transition: background-color 0.3s, color 0.3s;
 }
 
-
-
 hr{
     font-weight: normal;
     border: none; 
@@ -113,18 +111,12 @@ form {
     gap: 10px;
 }
 
-.form-row {
-  
-  gap: 10px;
-  margin-bottom: 10px;
+.form-mensagem{
+  margin-top: 10px;
 }
 
 .form-row:nth-child(2) { /* linha do email */
   flex-direction: column;
-}
-
-.form-group {
-  flex: 1; /* Para que os campos ocupem igualmente o espaço na linha */
 }
 
 .form-row:nth-child(2) .form-group {
@@ -132,7 +124,26 @@ form {
   width: 100%;
 }
 
+.form-row, .form-group {
+  gap: 10px;
+  margin-bottom: 10px;
+}
 
+.form-groups {
+  display: flex;
+  gap: 20px; /* Espaço entre as colunas */
+}
+
+.form-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espaço entre os itens */
+}
+
+.form-group {
+  width: 100%;
+}
 
 form label {
   display: block;
@@ -158,7 +169,6 @@ textarea {
     min-height: 100px;
     grid-column: span 2; 
 }
-
 
 input[name="nome"],
 input[name="telefone"] {
@@ -237,7 +247,6 @@ form button {
   flex: 1 1 300px;
 }
 
-
 .footer-columns{
   display: flex;
   max-width: 1200px;
@@ -293,9 +302,6 @@ form button {
   width: 20px;
   height: 20px;
 }
-
-
-
   
   /* Responsividade da apresentação */
 @media (max-width: 900px) {

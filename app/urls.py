@@ -7,6 +7,7 @@ from .views.perfilProcedimento_views import perfilProcedimento_views
 from .views.procedimentos_views import procedimentos_views
 from .views.formulario_views import formularioConsulta_view, procedimentos_por_tipo, dias_por_procedimento, turnos_por_procedimento_dia, medicos_por_procedimento
 
+
 urlpatterns = [
     path('', home_view, name='home'),
     path('formulario/', formulario_view, name='formulario'),

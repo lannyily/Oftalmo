@@ -1,10 +1,10 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .models import Consulta
+from .models import Agenda
 import time
 from django.conf import settings
 
-@receiver(post_save, sender=Consulta)
+@receiver(post_save, sender=Agenda)
 def enviar_whatsapp_apos_confirmacao(sender, instance, created, **kwargs):
     if not created and instance.confirmada:
         if not getattr(settings, 'WHATSAPP_ENABLED', False):

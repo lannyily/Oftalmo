@@ -53,7 +53,11 @@
             <i class="bi bi-calendar-event-fill"></i>
             <div class="textos">
               <strong>Horários disponíveis:</strong>
-              <p>{{ procedimento.horarios_disponiveis }}</p>
+              {% for horario in procedimento.horarios.all %}
+                <p>{{ horario.get_dia_display }} - {{ horario.get_turno_display }} ({{ horario.hora_inicio }} às {{ horario.hora_fim }})</p>
+              {% empty %}
+                <p>Sem horários cadastrados.</p>
+              {% endfor %} 
             </div>
           </li>
           <li>

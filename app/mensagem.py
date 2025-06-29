@@ -14,7 +14,11 @@ def enviar_mensagem_whatsapp(consulta):
         mensagem = (
             f"Olá {consulta.nome}! Sua consulta com {consulta.medico.nome} "
             f"foi confirmada para {consulta.data_atribuida.strftime('%d/%m/%Y')}.\n\n"
-            "Por favor, chegue com 10 minutos de antecedência.\n\n"
+            f"🕑 *Turno:* {consulta.turno}\n"
+            f"🧑‍⚕️ *Médico:* Dr(a). {consulta.medico.nome}\n"
+            f"📄 *Procedimento:* {consulta.procedimento}\n"
+            "Por favor, chegue com 10 minutos de antecedência.\n"
+            "Se deseja mudar a data do procedimento?\n\n"
             "Atenciosamente,\nEquipe Clínica"
         )
         
