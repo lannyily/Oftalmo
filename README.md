@@ -107,8 +107,8 @@ Ao solicitar uma consulta, o paciente recebe:
 
 ## Desenvolvido por
 
-> Erlanny Rodrigues
-> Naiana Silva
-> Andressa Caroline
+> Erlanny Rodrigues,
+> Naiana Silva e
+> Andressa Caroline -
 > Sistemas de Informação - UFPI - CSHNB
 
